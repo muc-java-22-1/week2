@@ -1,4 +1,4 @@
-package io.github.mysterix5;
+package io.github.mysterix5.inheritance;
 
 public class StudentDB {
 
@@ -19,13 +19,13 @@ public class StudentDB {
         this.students = s1;
     }
 
-    public void remove(int id){
+    public void remove(String id){
         if(!containsStudentWithId(id)) return;
         Student[] newStudentList = new Student[this.students.length-1];
         int addup = 0;
         for(int i = 0; i< newStudentList.length; i++){
             System.out.println("i: " + i);
-            if((this.students[i].getID() == id)) {
+            if((this.students[i].getID().equals(id))) {
                 System.out.println(this.students[i]);
                 System.out.println(this.students[i].getID());
                 addup++;
@@ -34,8 +34,8 @@ public class StudentDB {
         }
         this.students = newStudentList;
     }
-    private boolean containsStudentWithId(int id){
-        for(Student s: this.students) if(s.getID() == id) return true;
+    private boolean containsStudentWithId(String id){
+        for(Student s: this.students) if(s.getID().equals(id)) return true;
         return false;
     }
 

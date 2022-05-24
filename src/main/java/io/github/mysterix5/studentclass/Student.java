@@ -1,10 +1,10 @@
-package io.github.mysterix5;
+package io.github.mysterix5.studentclass;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Student {
-    private static int idCounter = 0;
-    final private int ID;
+    final private String ID = UUID.randomUUID().toString();
     private String name;
     private int codewarsRanking;
     private String course;
@@ -13,14 +13,12 @@ public class Student {
         name = "name";
         codewarsRanking = 0;
         course = "School of life";
-        ID = idCounter++;
     }
 
     public Student(String name, int codewarsRanking, String course){
         this.name = name;
         this.codewarsRanking = codewarsRanking;
         this.course = course;
-        ID = idCounter++;
     }
 
 
@@ -53,7 +51,7 @@ public class Student {
         this.course = course;
     }
 
-    public int getID() {
+    public String getID() {
         return this.ID;
     }
 

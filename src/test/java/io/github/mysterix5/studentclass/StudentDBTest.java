@@ -1,4 +1,4 @@
-package io.github.mysterix5;
+package io.github.mysterix5.studentclass;
 
 import java.util.Arrays;
 
@@ -22,7 +22,7 @@ class StudentDBTest {
         var students = createStudentArray();
 
         StudentDB studentDB = new StudentDB(students);
-        System.out.println(studentDB.toString());
+        System.out.println(studentDB);
         assertEquals(
                 "Student Alf is in how to eat cats properly and is ranked 1010; Student ET is in how to call home and is ranked 666; Student Data is in how to feel and is ranked 120348; Student Luke is in how to not kiss family members and is ranked 123; ",
                 studentDB.toString());
@@ -52,7 +52,7 @@ class StudentDBTest {
     void remove() {
         var students = createStudentArray();
         var studentDB = new StudentDB(students);
-        int etsId = studentDB.getByArrayIndex(1).getID();
+        String etsId = studentDB.getByArrayIndex(1).getID();
         studentDB.remove(etsId);
         System.out.println(studentDB);
 
