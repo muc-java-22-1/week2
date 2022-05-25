@@ -1,5 +1,6 @@
-package io.github.mysterix5;
+package io.github.mysterix5.studentclass;
 
+import io.github.mysterix5.studentclass.Student;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
