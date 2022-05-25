@@ -14,17 +14,20 @@ class StudentDBTest {
 
         StudentDB studentDB = new StudentDB(students);
         assertEquals(students, studentDB.list());
+        System.out.println(studentDB);
     }
 
     @Test
     void testToString() {
-        var students = createStudentArray();
-
+        Map<String, Student> students = new HashMap<>();
+        Student s1 = new MathStudent();
+        students.put(s1.getID(), s1);
         StudentDB studentDB = new StudentDB(students);
-        System.out.println(studentDB);
-//        assertEquals(
-//                "Student Alf is in how to eat cats properly and is ranked 1010; Student ET is in how to call home and is ranked 666; Student Data is in how to feel and is ranked 120348; Student Luke is in how to not kiss family members and is ranked 123; ",
-//                studentDB.toString());
+        assertEquals("""
+                        StudentDB:\s
+                        Student name visits the course 'School of life' and is ranked 0 on CodeWars.
+                        ------""",
+                studentDB.toString());
     }
 
     @Test
@@ -91,7 +94,7 @@ class StudentDBTest {
         Map<String, Student> students = new HashMap<>();
         var alf = new HistoryStudent("Alf", 1010, "how to eat cats properly");
         var et = new MathStudent("ET", 666, "how to call home");
-        var data = new MathStudent("Data", 120348, "how to feel");
+        var data = new MathStudent("Data", 2, "how to feel");
         var luke = new HistoryStudent("Luke", 123, "how to not kiss family members");
         students.put(alf.getID(), alf);
         students.put(et.getID(), et);

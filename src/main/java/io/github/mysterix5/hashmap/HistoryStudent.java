@@ -46,6 +46,6 @@ public class HistoryStudent implements Student {
 
     @Override
     public String toString() {
-        return "Student " + name + " is in " + course + " and is ranked " + codewarsRanking;
+        return "Student " + name + " visits the course '" + course + "' and is ranked " + codewarsRanking + " on CodeWars.";
     }
 }

@@ -32,12 +32,12 @@ public class StudentDB {
 
     @Override
     public String toString(){
-        String returnString = "StudentDB: \n";
+        StringBuilder sb = new StringBuilder("StudentDB: \n");
         for(Student s: this.students.values()) {
-            returnString += s + "\n";
+            sb.append(s + "\n");
         }
-        returnString += "------";
-        return returnString;
+        sb.append("------");
+        return sb.toString();
     }
 
     public Student randomStudent() {
