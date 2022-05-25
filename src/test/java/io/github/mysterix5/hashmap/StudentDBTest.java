@@ -2,8 +2,8 @@ package io.github.mysterix5.hashmap;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,15 +13,17 @@ class StudentDBTest {
         var students = createStudentArray();
 
         StudentDB studentDB = new StudentDB(students);
-        assertEquals(students, studentDB.list());
+
+        assertTrue(students.containsAll(studentDB.list()));
+        assertTrue(studentDB.list().containsAll(students));
         System.out.println(studentDB);
     }
 
     @Test
     void testToString() {
-        Map<String, Student> students = new HashMap<>();
+        List<Student> students = new ArrayList<>();
         Student s1 = new MathStudent();
-        students.put(s1.getID(), s1);
+        students.add(s1);
         StudentDB studentDB = new StudentDB(students);
         assertEquals("""
                         StudentDB:\s
@@ -44,20 +46,24 @@ class StudentDBTest {
         var studentDB = new StudentDB(students);
         Student newStudent = new HistoryStudent();
         studentDB.add(newStudent);
-        students.put(newStudent.getID(), newStudent);
-        assertEquals(students, studentDB.list());
+        students.add(newStudent);
+
+        assertTrue(students.containsAll(studentDB.list()));
+        assertTrue(studentDB.list().containsAll(students));
     }
 
     @Test
     void removeByStudent() {
         Student newStudent = new HistoryStudent();
         var students = createStudentArray();
-        students.put(newStudent.getID(), newStudent);
+        students.add(newStudent);
         var studentDB = new StudentDB(students);
-        studentDB.removeByStudent(newStudent);
 
-        students.remove(newStudent.getID());
-        assertEquals(students, studentDB.list());
+        studentDB.removeByStudent(newStudent);
+        students.remove(newStudent);
+
+        assertTrue(students.containsAll(studentDB.list()));
+        assertTrue(studentDB.list().containsAll(students));
     }
 
 
@@ -65,19 +71,20 @@ class StudentDBTest {
     void removeById() {
         Student newStudent = new HistoryStudent();
         var students = createStudentArray();
-        students.put(newStudent.getID(), newStudent);
+        students.add(newStudent);
         var studentDB = new StudentDB(students);
 
-        students.remove(newStudent.getID());
+        students.remove(newStudent);
         studentDB.removeById(newStudent.getID());
 
-        assertEquals(students, studentDB.list());
+        assertTrue(students.containsAll(studentDB.list()));
+        assertTrue(studentDB.list().containsAll(students));
     }
 
     @Test
     void sayHello(){
         var students = createStudentArray();
-        for(var s: students.values()) s.sayHello();
+        for(var s: students) s.sayHello();
     }
 
     @Test
@@ -90,16 +97,16 @@ class StudentDBTest {
         assertEquals(newStudent, studentDB.getById(newStudent.getID()));
     }
 
-    Map<String, Student> createStudentArray(){
-        Map<String, Student> students = new HashMap<>();
+    List<Student> createStudentArray(){
+        List<Student> students = new ArrayList<>();
         var alf = new HistoryStudent("Alf", 1010, "how to eat cats properly");
         var et = new MathStudent("ET", 666, "how to call home");
         var data = new MathStudent("Data", 2, "how to feel");
         var luke = new HistoryStudent("Luke", 123, "how to not kiss family members");
-        students.put(alf.getID(), alf);
-        students.put(et.getID(), et);
-        students.put(data.getID(), data);
-        students.put(luke.getID(), luke);
+        students.add(alf);
+        students.add(et);
+        students.add(data);
+        students.add(luke);
         return students;
     }
 

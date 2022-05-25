@@ -1,6 +1,8 @@
 package io.github.mysterix5.hashmap;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StudentDB {
@@ -11,8 +13,9 @@ public class StudentDB {
         return this.students.get(id);
     }
 
-    public StudentDB(Map<String, Student> students){
-        this.students = new HashMap<>(students);
+    public StudentDB(List<Student> students){
+        this.students = new HashMap<>();
+        for(Student s: students) this.students.put(s.getID(), s);
     }
 
     public void add(Student s){
@@ -26,15 +29,16 @@ public class StudentDB {
         students.remove(s);
     }
 
-    public Map<String, Student> list(){
-        return students;
+    public Collection<Student> list(){
+        return students.values();
     }
 
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder("StudentDB: \n");
         for(Student s: this.students.values()) {
-            sb.append(s + "\n");
+            sb.append(s);
+            sb.append("\n");
         }
         sb.append("------");
         return sb.toString();
