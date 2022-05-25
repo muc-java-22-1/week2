@@ -51,6 +51,20 @@ class StudentDBTest {
         assertTrue(students.containsAll(studentDB.list()));
         assertTrue(studentDB.list().containsAll(students));
     }
+    @Test
+    void addThrowException() {
+        var students = createStudentArray();
+        var studentDB = new StudentDB(students);
+        Student newStudent = new HistoryStudent();
+
+        studentDB.add(newStudent);
+        try{
+            studentDB.add(newStudent);
+            fail();
+        } catch(RuntimeException e){
+
+        }
+    }
 
     @Test
     void removeByStudent() {
