@@ -107,4 +107,70 @@ class LinkedListTest {
         assertEquals(a1, ll.get(0));
         assertEquals(a2, ll.get(1));
     }
+    @Test
+    void removeByIndexFirst(){
+        LinkedList ll = new LinkedList();
+        Animal a1 = new Animal("Lion");
+        Animal a2 = new Animal("Dolphin");
+        Animal a3 = new Animal("Dog");
+
+        ll.add(a1);
+        ll.add(a2);
+        ll.add(a3);
+
+        ll.remove(0);
+
+        assertEquals(a2, ll.get(0));
+        assertEquals(a3, ll.get(1));
+    }
+    @Test
+    void removeByIndexMiddle(){
+        LinkedList ll = new LinkedList();
+        Animal a1 = new Animal("Lion");
+        Animal a2 = new Animal("Dolphin");
+        Animal a3 = new Animal("Dog");
+
+        ll.add(a1);
+        ll.add(a2);
+        ll.add(a3);
+
+        ll.remove(1);
+
+        assertEquals(a1, ll.get(0));
+        assertEquals(a3, ll.get(1));
+    }
+    @Test
+    void removeByIndexLast(){
+        LinkedList ll = new LinkedList();
+        Animal a1 = new Animal("Lion");
+        Animal a2 = new Animal("Dolphin");
+        Animal a3 = new Animal("Dog");
+
+        ll.add(a1);
+        ll.add(a2);
+        ll.add(a3);
+
+        ll.remove(2);
+
+        assertEquals(a1, ll.get(0));
+        assertEquals(a2, ll.get(1));
+    }
+    @Test
+    void removeByIndexNonExisting(){
+        LinkedList ll = new LinkedList();
+        Animal a1 = new Animal("Lion");
+        Animal a2 = new Animal("Dolphin");
+        Animal a3 = new Animal("Dog");
+
+        ll.add(a1);
+        ll.add(a2);
+        ll.add(a3);
+
+        ll.remove(-1);
+        ll.remove(3);
+
+        assertEquals(a1, ll.get(0));
+        assertEquals(a2, ll.get(1));
+        assertEquals(a3, ll.get(2));
+    }
 }

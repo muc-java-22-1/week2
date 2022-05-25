@@ -8,14 +8,22 @@ public class LinkedList {
     }
 
     public Animal get(int index){
+        AnimalListItem ali = getAnimalListItemByIndex(index);
+        if(ali==null) return null;
+        return ali.getValue();
+    }
+
+    private AnimalListItem getAnimalListItemByIndex(int index){
         AnimalListItem iterator = head;
         if(index<0) {
             System.out.println("Method needs a valid index");
+            return null;
         }
         if(head.next()==null) {
             System.out.println("LinkedList is empty");
             return null;
         }
+        if(index==0) return head.next();
         while(index>=0 && iterator.next()!=null) {
             iterator = iterator.next();
             index--;
@@ -25,7 +33,7 @@ public class LinkedList {
             return null;
         }
 
-        return iterator.getValue();
+        return iterator;
     }
 
     public void add(Animal value){
@@ -61,5 +69,27 @@ public class LinkedList {
             iterator = iterator.next();
         }
         System.out.println("Element not found in LinkedList and therefore not removed.");
+    }
+
+    public void remove(int i) {
+        if(head.next()==null) {
+            System.out.println("LinkedList is empty, didnt remove anything");
+            return;
+        }
+        AnimalListItem before;
+        if(i == 0) {
+            before = head;
+        }
+        else {
+            before = getAnimalListItemByIndex(i-1);
+        }
+        if(before==null) {
+            return;
+        }
+        if(before.next()==null) {
+            before.setNext(null);
+            return;
+        }
+        before.setNext(before.next().next());
     }
 }
