@@ -8,7 +8,6 @@ public class LinkedList {
     }
 
     public Animal get(int index){
-        System.out.println("linkedlist get start");
         AnimalListItem iterator = head;
         if(index<0) {
             System.out.println("Method needs a valid index");
@@ -18,20 +17,14 @@ public class LinkedList {
             return null;
         }
         while(index>=0 && iterator.next()!=null) {
-            System.out.println("value: " + iterator.next().getValue());
             iterator = iterator.next();
             index--;
-            /*if(iterator.next()==null){
-                System.out.println("LinkedList is shorter than your given index; returning null!");
-                return null;
-            }*/
         }
         if(index>=0){
             System.out.println("LinkedList is shorter than your given index; returning null!");
             return null;
         }
 
-        System.out.println("linkedlist get end");
         return iterator.getValue();
     }
 
@@ -56,5 +49,17 @@ public class LinkedList {
             returnString += " -> " + iterator.getValue().toString();
         }
         return returnString;
+    }
+
+    public void remove(Animal a) {
+        var iterator = head;
+        while(iterator.next()!=null){
+            if(iterator.next().getValue().equals(a)) {
+                iterator.setNext(iterator.next().next());
+                return;
+            }
+            iterator = iterator.next();
+        }
+        System.out.println("Element not found in LinkedList and therefore not removed.");
     }
 }
